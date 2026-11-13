@@ -24,3 +24,22 @@ env/
 Thumbs.db
 *.log
 *.tmp
+
+# Ignore all actual datasets
+data/raw/**
+
+# Keep main folders
+!data/raw/floods/
+!data/raw/geo/
+!data/raw/rainfall/
+!data/raw/elevation/
+
+# Keep IMD subfolder
+!data/raw/rainfall/imd/
+
+# Keep placeholder files
+!data/raw/floods/.gitkeep
+!data/raw/geo/.gitkeep
+!data/raw/rainfall/.gitkeep
+!data/raw/elevation/.gitkeep
+!data/raw/rainfall/imd/.gitkeep
