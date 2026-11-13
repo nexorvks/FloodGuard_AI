@@ -1,4 +1,7 @@
+
+# =====================================
 # Python
+# =====================================
 __pycache__/
 *.py[cod]
 .venv/
@@ -6,42 +9,44 @@ venv/
 env/
 .ipynb_checkpoints/
 
-# Environment / secrets
+# =====================================
+# Environment / Secrets
+# =====================================
 .env
+.env.*
 
-# Data (large files; share via Drive/DVC instead)
-data/raw/*
-data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
+# =====================================
+# Input Datasets
+# Ignore all files and subfolders inside data/raw
+/data/raw/*
+!/data/raw/*/
+!/data/raw/*/.gitkeep
 
-# Models
-ml/models/*
-!ml/models/.gitkeep
+# Ignore all processed datasets
+/data/processed/*
+!/data/processed/.gitkeep
 
-# IDE / OS
+# =====================================
+# Elevation Datasets
+# Keep elevation folder visible
+/elevation/*
+!/elevation/.gitkeep
+
+# =====================================
+# Trained Models
+/ml/models/*
+!/ml/models/.gitkeep
+
+# =====================================
+# IDE / Operating System
+# =====================================
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
 
-# Flood datasets
-DFSI.csv
-District_FloodedArea.csv
-District_FloodImpact.csv
-India_Flood_Inventory_v3.csv
-ndem_floods_1998_2022.parquet
-
-# Geographical datasets
-LGD_Districts.parquet
-LGD_States.parquet
-WRIS_Basin.parquet
-Bharatmaps_Dams.parquet
-CoREStack_LULC_Blocks_2023_24.parquet
-
-# Rainfall datasets
-rainfall_districtwise_daily_imd.csv
-RF25_ind*_rfp25.nc
-
-# Elevation datasets
-/elevation/
+# =====================================
+# Logs and Temporary Files
+# =====================================
+*.log
+*.tmp
