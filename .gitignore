@@ -15,23 +15,6 @@ env/
 .env
 .env.*
 
-
-# Ignore all raw input datasets
-data/raw/**
-
-# Keep folder structure visible on GitHub
-!data/raw/floods/
-!data/raw/geo/
-!data/raw/rainfall/
-!data/raw/elevation/
-
-# Keep placeholder files so GitHub displays empty folders
-!data/raw/floods/.gitkeep
-!data/raw/geo/.gitkeep
-!data/raw/rainfall/.gitkeep
-!data/raw/elevation/.gitkeep
-
-
 # =====================================
 # IDE / Operating System
 # =====================================
