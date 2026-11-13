@@ -21,6 +21,6 @@ jupyter
 
 # Optional (uncomment when needed)
 # imbalanced-learn   # if flood class is very rare
-# xarray             # IMD NetCDF rainfall files
-# netCDF4
+xarray             # IMD NetCDF rainfall files
+netCDF4
 # pytest             # once the API is stable

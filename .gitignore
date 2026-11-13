@@ -24,3 +24,24 @@ ml/models/*
 .idea/
 .DS_Store
 Thumbs.db
+
+# Flood datasets
+DFSI.csv
+District_FloodedArea.csv
+District_FloodImpact.csv
+India_Flood_Inventory_v3.csv
+ndem_floods_1998_2022.parquet
+
+# Geographical datasets
+LGD_Districts.parquet
+LGD_States.parquet
+WRIS_Basin.parquet
+Bharatmaps_Dams.parquet
+CoREStack_LULC_Blocks_2023_24.parquet
+
+# Rainfall datasets
+rainfall_districtwise_daily_imd.csv
+RF25_ind*_rfp25.nc
+
+# Elevation datasets
+/elevation/
