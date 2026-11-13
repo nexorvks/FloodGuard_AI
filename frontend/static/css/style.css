@@ -1,0 +1,20 @@
+/* Update these colours to match your reference palette */
+:root {
+  --bg: #0b1c2c;
+  --surface: #12304a;
+  --primary: #1e90ff;
+  --accent: #00c2a8;
+  --text: #e8f1f8;
+  --risk-low: #2ecc71;
+  --risk-moderate: #f39c12;
+  --risk-high: #e74c3c;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); }
+.navbar { display: flex; gap: 1.5rem; align-items: center; padding: 1rem 2rem; background: var(--surface); }
+.navbar a { color: var(--text); text-decoration: none; }
+.navbar a:hover { color: var(--accent); }
+.brand { font-weight: 700; color: var(--primary); margin-right: auto; }
+main { padding: 2rem; }
+#map { height: 70vh; border-radius: 8px; }
