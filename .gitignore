@@ -15,27 +15,22 @@ env/
 .env
 .env.*
 
-# =====================================
-# Input Datasets
-# Ignore all files and subfolders inside data/raw
-/data/raw/*
-!/data/raw/*/
-!/data/raw/*/.gitkeep
 
-# Ignore all processed datasets
-/data/processed/*
-!/data/processed/.gitkeep
+# Ignore all raw input datasets
+data/raw/**
 
-# =====================================
-# Elevation Datasets
-# Keep elevation folder visible
-/elevation/*
-!/elevation/.gitkeep
+# Keep folder structure visible on GitHub
+!data/raw/floods/
+!data/raw/geo/
+!data/raw/rainfall/
+!data/raw/elevation/
 
-# =====================================
-# Trained Models
-/ml/models/*
-!/ml/models/.gitkeep
+# Keep placeholder files so GitHub displays empty folders
+!data/raw/floods/.gitkeep
+!data/raw/geo/.gitkeep
+!data/raw/rainfall/.gitkeep
+!data/raw/elevation/.gitkeep
+
 
 # =====================================
 # IDE / Operating System
@@ -44,9 +39,5 @@ env/
 .idea/
 .DS_Store
 Thumbs.db
-
-# =====================================
-# Logs and Temporary Files
-# =====================================
 *.log
 *.tmp
