@@ -30,7 +30,7 @@ def fetch_rainfall_batch(districts):
         "end_date": end_date.isoformat(),
         "daily": "precipitation_sum",
         "timezone": "Asia/Kolkata",
-        "models": "era5_land"
+        "models": "era5"
     }
 
     response = requests.get(
