@@ -1,9 +1,12 @@
 .map-page {
-    width: 92%;
-    max-width: 1400px;
-    margin: 35px auto;
-    color: #EEE7D8;
+    width: calc(100% - 72px) !important;
+    max-width: none !important;
+    box-sizing: border-box;
+    margin: 30px auto !important;
+    color: #FFFFFF;
 }
+
+
 
 .map-heading {
     margin-bottom: 25px;
@@ -136,10 +139,11 @@
 
 #districtMap {
     width: 100%;
-    height: 350px;
-    border-radius: 12px;
-    margin: 20px 0;
-    z-index: 1;
+    height: 400px;
+    min-height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #e8eee9;
 }
 
 .district-details {
@@ -178,8 +182,8 @@
 
 @media (max-width: 700px) {
     .map-page {
-        width: 95%;
-    }
+        width: calc(100% - 24px) !important;
+    }   
 
     .risk-map-section,
     .district-section {
@@ -217,4 +221,199 @@
     padding-left: 2px;
     margin-bottom: 8px;
     line-height: 1.5;
+}
+
+
+.prediction-panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 22px 0;
+    box-shadow: 0 3px 12px #00000012;
+}
+
+.prediction-panel h3 {
+    font-size: 23px;
+    margin-bottom: 18px;
+    color: #183f30;
+}
+
+.prediction-result {
+    background: #f5f6f3;
+    border-left: 6px solid #d94343;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 22px;
+}
+
+.prediction-result span {
+    display: block;
+    color: #68756c;
+    font-size: 15px;
+}
+
+.prediction-result strong {
+    display: block;
+    font-size: 34px;
+    margin: 5px 0;
+}
+
+.prediction-result p {
+    font-size: 15px;
+}
+
+.prediction-panel h4 {
+    margin: 16px 0;
+    font-size: 18px;
+}
+
+.score-row {
+    margin-bottom: 17px;
+}
+
+.score-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.score-track {
+    height: 12px;
+    background: #e8ece8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    border-radius: 20px;
+}
+
+.prediction-advice {
+    background: #edf5ed;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 22px;
+}
+
+.prediction-panel small {
+    display: block;
+    color: #707b73;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+
+
+.map-heading h1,
+.map-toolbar h2,
+.district-section h2 {
+    color: #172B4D;
+}
+
+.map-heading p,
+.district-section p {
+    color: #65758B;
+}
+
+.risk-map-section,
+.district-section,
+.historical-section {
+    background: #FFFFFF;
+    border: 1px solid #E2DFED;
+    border-radius: 16px;
+}
+
+.district-details .detail-card {
+    background: #F5F4FA;
+    border: 1px solid #E2DFED;
+    border-radius: 12px;
+}
+
+.district-details h3 {
+    color: #172B4D;
+}
+
+.historical-event-card {
+    border: 1px solid #B9A7D9;
+}
+
+.map-page button {
+    background: #172B4D;
+    color: #FFFFFF;
+}
+
+.map-page button:hover {
+    background: #263F68;
+}
+
+.map-page input,
+.map-page select {
+    color: #172B4D;
+    background: #FFFFFF;
+    border: 1px solid #B9A7D9;
+}
+
+#mapMessage {
+    color: #65758B;
+}
+
+
+
+/* ==========================================
+   PREDICTION PANEL - TEXT VISIBILITY FIX
+   ========================================== */
+
+/* Prediction panel */
+#predictionPanel {
+    background: #FFFFFF !important;
+    color: #172B4D !important;
+}
+
+/* Panel headings */
+#predictionPanel h3,
+#predictionPanel h4 {
+    color: #172B4D !important;
+}
+
+/* Prediction result description */
+#predictionPanel .prediction-result span {
+    color: #65758B !important;
+}
+
+/* Model confidence */
+#predictionPanel .prediction-result p {
+    color: #172B4D !important;
+}
+
+/* Preserve Low / Moderate / High risk colour
+   on the predicted risk heading */
+#predictionPanel .prediction-result strong {
+    font-weight: 800;
+}
+
+/* Model class score labels */
+#predictionPanel .score-label span,
+#predictionPanel .score-label strong {
+    color: #172B4D !important;
+}
+
+/* Recommended safety action */
+#predictionPanel .prediction-advice {
+    background: #EAF5EE !important;
+}
+
+#predictionPanel .prediction-advice h4,
+#predictionPanel .prediction-advice p {
+    color: #172B4D !important;
+}
+
+/* Prediction disclaimer */
+#predictionPanel small {
+    color: #65758B !important;
+}
+
+/* Keep progress track visible */
+#predictionPanel .score-track {
+    background: #E8ECE8 !important;
 }

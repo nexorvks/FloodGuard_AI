@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>District Flood Search | FloodGuard AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='css/style.css') }}?v=4">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='css/search.css') }}?v=5">
+</head>
+
+<body>
+
+    <!-- SHARED NAVIGATION -->
+    {% include "partials/navbar.html" %}
+
+    <main class="search-page">
+
+        <section class="search-heading">
+            <span class="eyebrow">FLOODGUARD AI · DISTRICT ANALYSIS</span>
+
+            <h1>District Flood Prediction</h1>
+
+            <p>
+                Search an Indian district to view its predicted
+                flood-risk level and model confidence.
+            </p>
+        </section>
+
+        <!-- DISTRICT SEARCH -->
+        <section class="search-container">
+
+            <h2>Search Your District</h2>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="districtSearch"
+                    placeholder="Enter district name..."
+                    list="districtOptions"
+                    autocomplete="off">
+
+                <datalist id="districtOptions"></datalist>
+
+                <button id="searchDistrict">
+                    Search
+                </button>
+
+            </div>
+
+            <div id="searchMessage" role="status"></div>
+
+        </section>
+
+        <!-- PREDICTION DASHBOARD -->
+        <section id="predictionDashboard" hidden>
+
+            <h2 id="districtName"></h2>
+
+            <p id="stateName"></p>
+
+            <div id="predictionResult"></div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <span>✦ FloodGuard AI</span>
+        <span>India Flood Prediction & Monitoring</span>
+    </footer>
+
+    <script src="{{ url_for('static', path='js/search.js') }}?v=4"></script>
+
+</body>
+</html>

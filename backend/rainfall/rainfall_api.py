@@ -1,6 +1,8 @@
 
 import requests
 
+import time
+
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -78,14 +80,28 @@ def fetch_rainfall_batch(districts):
     return output
 
 
-def fetch_all_rainfall(districts, batch_size=40):
-
+def fetch_all_rainfall(districts, batch_size=10):
     output = []
 
     for start in range(0, len(districts), batch_size):
-
         batch = districts[start:start + batch_size]
 
-        output.extend(fetch_rainfall_batch(batch))
+        for attempt in range(5):
+            try:
+                output.extend(fetch_rainfall_batch(batch))
+                break
+
+            except requests.exceptions.HTTPError as error:
+                if error.response is None or error.response.status_code != 429:
+                    raise
+
+                wait = int(error.response.headers.get("Retry-After", 10))
+                print(f"Rate limited. Waiting {wait} seconds...")
+                time.sleep(wait)
+
+        else:
+            raise Exception("Open-Meteo rate limit exceeded after retries.")
+
+        time.sleep(2)
 
     return output

@@ -342,38 +342,52 @@ def load_risk_predictions():
     # Maintain exact training feature order
     X = features_df[model_features].copy()
 
+    print("\nKOLAR BACKEND INPUT:")
+
+    print(
+        features_df[
+            features_df["_district_key"] == "kolar"
+        ][X.columns].to_string(index=False)
+    )
+
     # Generate predictions
     predictions = model.predict(X)
 
-    # Get predicted class probabilities
+    
+    # Get probabilities for every risk class
     if hasattr(model, "predict_proba"):
 
         all_probabilities = model.predict_proba(X)
 
-        class_indices = {
-            str(label): index
-            for index, label in enumerate(model.classes_)
-        }
-
-        probabilities = [
-            float(
-                all_probabilities[row_index][
-                    class_indices[str(prediction)]
-                ]
-            )
-            for row_index, prediction in enumerate(predictions)
+        risk_scores = [
+            {
+                str(label).title(): round(float(probability), 6)
+                for label, probability in zip(
+                    model.classes_,
+                    row_probabilities
+                )
+            }
+            for row_probabilities in all_probabilities
         ]
 
     else:
+        risk_scores = [None] * len(predictions)
 
-        probabilities = [None] * len(predictions)
+    # Confidence of the predicted class
+    probabilities = [
+        scores.get(str(prediction).title())
+        if scores else None
+        for prediction, scores in zip(predictions, risk_scores)
+    ]
 
+    # Store predictions and scores in the dataframe
     features_df["risk_level"] = [
-        str(value).title()
-        for value in predictions
+        str(value).title() for value in predictions
     ]
 
     features_df["risk_probability"] = probabilities
+
+    features_df["risk_scores"] = risk_scores
 
     # Create district + state lookup
     prediction_lookup = {}
@@ -390,10 +404,11 @@ def load_risk_predictions():
         prediction_lookup[key] = {
             "risk_level": row["risk_level"],
             "risk_probability": (
-                float(probability)
-                if pd.notna(probability)
+                float(row["risk_probability"])
+                if pd.notna(row["risk_probability"])
                 else None
-            )
+            ),
+            "risk_scores": row["risk_scores"]
         }
 
     print(
@@ -448,6 +463,7 @@ def load_districts():
     # Default risk values
     gdf["risk_level"] = "No data"
     gdf["risk_probability"] = None
+    gdf["risk_scores"] = None
 
     # Generate district predictions
     predictions = load_risk_predictions()
@@ -471,6 +487,7 @@ def load_districts():
             gdf.at[index, "risk_probability"] = (
                 result["risk_probability"]
             )
+            gdf.at[index, "risk_scores"] = result["risk_scores"]
 
     print(
         "Districts loaded:",

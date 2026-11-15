@@ -1,0 +1,285 @@
+
+/* =========================================
+   FLOODGUARD AI - SEARCH PAGE
+   Royal Navy Theme
+========================================= */
+
+/* Main page template */
+.search-page {
+    width: calc(100% - 44px) !important;
+    max-width: none !important;
+    min-height: 85vh;
+    margin: 30px auto !important;
+    padding: 30px 4% !important;
+
+    background: #234175 !important;
+    color: #FFFFFF !important;
+
+    border: 1px solid rgba(185, 167, 217, 0.3);
+    border-radius: 25px !important;
+    box-shadow: 0 15px 45px rgba(23, 43, 77, 0.2);
+
+    box-sizing: border-box;
+}
+
+/* =========================================
+   PAGE HEADING
+========================================= */
+
+.search-heading {
+    margin-bottom: 30px;
+}
+
+.search-heading h1 {
+    color: #FFFFFF !important;
+    font-size: 34px;
+    margin: 12px 0;
+}
+
+.search-heading p {
+    color: #DCE6F7 !important;
+    font-size: 16px;
+}
+
+.search-page .eyebrow {
+    color: #B9A7D9 !important;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* =========================================
+   SEARCH CONTAINER
+========================================= */
+
+.search-container {
+    padding: 28px;
+    background: #FFFFFF !important;
+    color: #172B4D !important;
+
+    border: 1px solid #E2DFED;
+    border-radius: 18px;
+}
+
+.search-container h2 {
+    color: #172B4D !important;
+    margin-top: 0;
+}
+
+/* Search input and button */
+.search-box {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    padding: 15px;
+
+    background: #F5F4FA !important;
+    color: #172B4D !important;
+
+    border: 1px solid #B9A7D9;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.search-box input::placeholder {
+    color: #65758B !important;
+}
+
+.search-box button {
+    padding: 14px 28px;
+    background: #172B4D !important;
+    color: #FFFFFF !important;
+
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.search-box button:hover {
+    background: #344B70 !important;
+}
+
+/* Search message */
+#searchMessage {
+    margin-top: 16px;
+    color: #34445B !important;
+}
+
+/* =========================================
+   PREDICTION DASHBOARD
+========================================= */
+
+#predictionDashboard {
+    margin-top: 25px;
+    padding: 28px;
+
+    background: #FFFFFF !important;
+    color: #172B4D !important;
+
+    border: 1px solid #E2DFED;
+    border-radius: 18px !important;
+}
+
+#districtName {
+    color: #172B4D !important;
+    font-size: 28px;
+}
+
+#stateName {
+    color: #65758B !important;
+}
+
+/* =========================================
+   RISK RESULT
+========================================= */
+
+.risk-result {
+    background: #F5F4FA !important;
+    color: #172B4D !important;
+
+    padding: 22px;
+    border: 1px solid #E2DFED;
+    border-radius: 14px;
+    margin: 20px 0;
+}
+
+.risk-result h1 {
+    color: #172B4D !important;
+    font-size: 38px;
+    font-weight: 800;
+}
+
+.risk-result p {
+    color: #34445B !important;
+}
+
+#predictionResult h3 {
+    color: #172B4D !important;
+}
+
+#predictionResult p {
+    color: #34445B;
+}
+
+/* =========================================
+   RISK SCORES
+========================================= */
+
+.score {
+    margin: 20px 0;
+}
+
+.score p {
+    display: flex;
+    justify-content: space-between;
+    color: #172B4D !important;
+    margin-bottom: 8px;
+}
+
+.score strong {
+    color: #172B4D !important;
+}
+
+.track {
+    height: 12px;
+    background: #E5E1EF;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.track div {
+    height: 100%;
+    border-radius: 20px;
+}
+
+/* Preserve risk-level colours when used */
+#predictionDashboard .low {
+    color: #29965D !important;
+    font-weight: 700;
+}
+
+#predictionDashboard .moderate {
+    color: #B87912 !important;
+    font-weight: 700;
+}
+
+#predictionDashboard .high {
+    color: #C83232 !important;
+    font-weight: 700;
+}
+
+/* Disclaimer */
+.disclaimer {
+    color: #65758B !important;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 25px;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.search-page + footer {
+    width: calc(100% - 44px);
+    margin: 15px auto 0;
+    padding: 18px 10px;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    color: #65758B;
+    text-align: center;
+}
+
+.search-page + footer span {
+    color: #65758B;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 850px) {
+    .search-page {
+        width: calc(100% - 44px) !important;
+        padding: 24px 3% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .search-page {
+        width: calc(100% - 24px) !important;
+        padding: 20px 14px !important;
+        border-radius: 20px !important;
+    }
+
+    .search-heading h1 {
+        font-size: 27px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box button {
+        width: 100%;
+    }
+
+    .search-container,
+    #predictionDashboard {
+        padding: 18px;
+    }
+
+    .search-page + footer {
+        flex-direction: column;
+    }
+}

@@ -5,13 +5,18 @@
 }
 
 :root {
-    --forest: #12382E;
-    --forest-dark: #0C241E;
-    --beige: #EEE7D8;
-    --purple: #8951EF;
-    --purple-light: #AD85FF;
-    --white: #F8F4E9;
-    --muted: #B9C9BD;
+    --forest: #172B4D;
+    --forest-dark: #F4EDE0;
+    --beige: #FFFFFF;
+    --purple: #B9A7D9;
+    --purple-light: #B9A7D9;
+    --white: #FFFFFF;
+    --muted: #65758B;
+
+    --navy: #172B4D;
+    --lavender: #B9A7D9;
+    --cloud-white: #F5FF4EDE04FA;
+    --steel: #65758B;
 }
 
 body {
@@ -32,38 +37,34 @@ body {
     position: relative;
     overflow: hidden;
 
-    background-color: var(--forest);
+    background-color: #172B4D;
 
     background-image:
         radial-gradient(
             circle,
-            rgba(255,255,255,.32) 1px,
+            rgba(185,167,217,.35) 1px,
             transparent 1.5px
         ),
         radial-gradient(
             ellipse at 50% 55%,
-            rgba(137,81,239,.48),
+            rgba(185,167,217,.30),
             transparent 48%
         ),
         radial-gradient(
             ellipse at 80% 95%,
-            rgba(137,81,239,.27),
+            rgba(185,167,217,.20),
             transparent 38%
         ),
         radial-gradient(
             ellipse at 15% 85%,
-            rgba(137,81,239,.22),
+            rgba(185,167,217,.18),
             transparent 35%
         );
 
-    background-size:
-        19px 19px,
-        auto,
-        auto,
-        auto;
+    background-size: 19px 19px, auto, auto, auto;
 
-    border: 1px solid rgba(255,255,255,.15);
-    box-shadow: 0 20px 70px rgba(0,0,0,.4);
+    border: 1px solid rgba(185,167,217,.35);
+    box-shadow: 0 20px 70px rgba(23,43,77,.18);
 }
 
 .dashboard > * {
@@ -344,20 +345,20 @@ body {
     background:
         radial-gradient(
             circle at 50% 55%,
-            rgba(184,145,255,.45),
+            rgba(185,167,217,.55),
             transparent 60%
         ),
         linear-gradient(
             145deg,
-            #7040D3,
-            #9257F3,
-            #713BCB
+            #172B4D,
+            #344B70,
+            #172B4D
         );
 
     color: white;
     text-align: center;
-    border: 1px solid rgba(255,255,255,.18);
-    box-shadow: 0 12px 35px rgba(93,48,179,.3);
+    border: 1px solid rgba(185,167,217,.4);
+    box-shadow: 0 12px 35px rgba(23,43,77,.25);
 }
 
 .temperature-card .card-heading {
@@ -537,4 +538,891 @@ footer {
     footer {
         flex-direction: column;
     }
+}
+
+
+/* ==================================
+   FLOODGUARD AI - NEW GLOBAL THEME
+================================== */
+
+:root {
+    --navy: #172B4D;
+    --lavender: #B9A7D9;
+    --cloud-white: #F5F4FA;
+    --steel: #65758B;
+    --white: #FFFFFF;
+}
+
+/* Global page theme */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--cloud-white) !important;
+    color: var(--navy);
+}
+
+/* Common header */
+.site-header {
+    position: relative;
+    z-index: 1000;
+    width: calc(100% - 44px);
+    min-height: 105px;
+    margin: 8px auto 28px;
+    padding: 18px 4%;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    border: 1px solid rgba(185, 167, 217, 0.25);
+    border-radius: 25px;
+
+    background-color: var(--navy);
+    background-image: radial-gradient(
+        rgba(185, 167, 217, 0.32) 1px,
+        transparent 1px
+    );
+    background-size: 18px 18px;
+}
+
+/* Brand */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.brand-icon {
+    color: var(--lavender);
+    font-size: 30px;
+}
+
+.brand-ai {
+    color: var(--lavender);
+}
+
+/* Navigation pill */
+.main-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    padding: 7px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 40px;
+    background: rgba(255,255,255,0.08);
+}
+
+.main-navigation a {
+    padding: 12px 17px;
+    border-radius: 30px;
+    color: var(--cloud-white);
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.2s ease;
+}
+
+.main-navigation a:hover,
+.main-navigation a.active {
+    background: rgba(255,255,255,0.18);
+    color: var(--white);
+}
+
+/* Monitoring status */
+.monitoring-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 30px;
+    color: var(--white);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #83D6A5;
+}
+
+/* Global headings and paragraphs */
+h1, h2, h3, h4 {
+    color: var(--navy);
+}
+
+p, label, small {
+    color: var(--steel);
+}
+
+/* Buttons */
+button {
+    background-color: var(--navy);
+    color: var(--white);
+}
+
+button:hover {
+    background-color: #263F68;
+}
+
+/* Cards */
+.card,
+.detail-card,
+#predictionDashboard {
+    background: var(--white);
+    color: var(--navy);
+    border-color: #E2DFED;
+}
+
+/* Responsive header */
+@media (max-width: 850px) {
+    .site-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 18px;
+    }
+
+    .main-navigation {
+        order: 3;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .main-navigation a {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-header {
+        width: calc(100% - 20px);
+    }
+
+    .monitoring-status {
+        font-size: 11px;
+    }
+}
+
+
+/* =================================
+   SAFETY PAGE - NAVY & LAVENDER
+================================= */
+
+.container {
+    color: #172B4D;
+}
+
+.page-heading h1,
+.safety-card h2,
+.emergency-section h2 {
+    color: #172B4D;
+}
+
+.page-heading p,
+.safety-card p {
+    color: #65758B;
+}
+
+/* Main cards */
+.emergency-section,
+.safety-card,
+.final-message {
+    background: #FFFFFF;
+    border: 1px solid #E2DFED;
+    border-radius: 16px;
+    padding: 26px;
+    margin-bottom: 22px;
+}
+
+/* Emergency numbers */
+.emergency-warning {
+    color: #9B1C31;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.emergency-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.emergency-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px;
+    border-radius: 13px;
+    text-decoration: none;
+    background: #F5F4FA;
+    border: 1px solid #E2DFED;
+}
+
+.emergency-card span {
+    color: #65758B;
+    font-size: 14px;
+}
+
+.emergency-card strong {
+    color: #9B1C31;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.emergency-card small {
+    color: #65758B;
+    line-height: 1.5;
+}
+
+.emergency-card.primary {
+    background: #FFF0F0;
+    border: 2px solid #9B1C31;
+}
+
+.emergency-card.primary strong {
+    font-size: 46px;
+    color: #9B1C31;
+}
+
+.number-note {
+    color: #65758B;
+    margin-top: 18px;
+}
+
+/* Safety lists */
+.safety-card ul {
+    padding-left: 25px;
+}
+
+.safety-card li {
+    color: #34445B;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 9px;
+}
+
+/* Danger section */
+.danger-card {
+    border-left: 5px solid #B33A46;
+}
+
+/* Emergency kit */
+.kit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+    margin-top: 20px;
+}
+
+.kit-grid label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px;
+    border-radius: 9px;
+    background: #F5F4FA;
+    color: #34445B;
+    font-size: 16px;
+}
+
+.kit-grid input {
+    accent-color: #172B4D;
+    width: 18px;
+    height: 18px;
+}
+
+/* Risk levels - retain meaningful status colours */
+.risk-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.risk-card {
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.risk-card h3 {
+    font-size: 20px;
+}
+
+.low-risk {
+    background: #EAF5EE;
+    border-left: 5px solid #29965D;
+}
+
+.moderate-risk {
+    background: #FFF5DF;
+    border-left: 5px solid #D99A24;
+}
+
+.high-risk {
+    background: #FDECEC;
+    border-left: 5px solid #D84444;
+}
+
+.risk-note {
+    margin-top: 18px;
+    color: #65758B;
+}
+
+/* Final emergency message */
+.final-message {
+    text-align: center;
+    background: #172B4D;
+}
+
+.final-message h2,
+.final-message p {
+    color: #FFFFFF;
+}
+
+.final-message a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 14px 24px;
+    border-radius: 9px;
+    background: #9B1C31;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .emergency-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .risk-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    .emergency-grid,
+    .kit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .safety-card,
+    .emergency-section {
+        padding: 18px;
+    }
+}
+
+.dashboard .map-title h1 {
+    color: #FFFFFF;
+}
+
+.dashboard .map-title p {
+    color: #D8D2E8;
+}
+
+.dashboard .eyebrow {
+    color: #B9A7D9;
+}
+
+.dashboard #mapType {
+    background: #172B4D;
+    color: #FFFFFF;
+    border: 1px solid #B9A7D9;
+}
+
+/* =====================================
+   FLOODGUARD AI - CONTENT TEMPLATE
+   Royal Blue Theme
+===================================== */
+
+:root {
+    --content-blue: #0047AB;
+}
+
+/* Background of the template below the navbar */
+.content-template {
+    background-color: #3565A8 !important;
+    color: #FFFFFF;
+    border: 1px solid rgba(185, 167, 217, 0.35);
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(0, 71, 171, 0.18);
+}
+
+/* Headings and descriptions inside the template */
+.content-template h1,
+.content-template h2,
+.content-template h3,
+.content-template h4 {
+    color: #FFFFFF;
+}
+
+.content-template p,
+.content-template label {
+    color: #E1E9F7;
+}
+
+/* Dropdowns and input fields */
+.content-template select,
+.content-template input {
+    border-color: #B9A7D9;
+}
+
+/* Keep the top navigation unchanged */
+.site-header {
+    background-color: #172B4D;
+}
+/* FLOODGUARD CONTENT BACKGROUND */
+
+.dashboard {
+    background-color: #234175 !important;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.22) 1px,
+            transparent 1.5px
+        ) !important;
+
+    border: 1px solid rgba(185,167,217,0.35);
+    box-shadow: 0 15px 45px rgba(23,43,77,0.18);
+}
+
+/* Remove unwanted horizontal separator */
+hr {
+    display: none;
+}
+
+/* Actual page background */
+body {
+    background-color: #F4EDE0 !important;
+}
+
+/* Remove unwanted separator line */
+hr {
+    display: none !important;
+}
+
+.site-header {
+    border-bottom: none !important;
+    margin-bottom: 28px;
+}
+
+.dashboard {
+    border-top: none !important;
+}
+
+
+/* =================================
+   OTHER PAGES - ROYAL NAVY THEME
+================================= */
+
+.page-template {
+    background-color: #234175 !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(185, 167, 217, 0.3);
+    border-radius: 25px;
+    padding: 30px 4%;
+    box-shadow: 0 15px 45px rgba(23, 43, 77, 0.2);
+}
+
+/* All text */
+.page-template h1,
+.page-template h2,
+.page-template h3,
+.page-template h4,
+.page-template p,
+.page-template span,
+.page-template label,
+.page-template li,
+.page-template a,
+.page-template strong,
+.page-template small,
+.page-template td,
+.page-template th {
+    color: #FFFFFF;
+}
+
+/* Content cards */
+.page-template .card,
+.page-template .detail-card,
+.page-template .safety-card,
+.page-template .emergency-section,
+.page-template .emergency-card {
+    background: #1B3560;
+    color: #FFFFFF;
+    border-color: rgba(185, 167, 217, 0.35);
+}
+
+/* Keep form controls readable */
+.page-template input,
+.page-template select,
+.page-template textarea {
+    background: #FFFFFF;
+    color: #172B4D;
+}
+
+/* OTHER NAVIGATION PAGES */
+.page-template {
+    background: #234175 !important;
+    color: #FFFFFF;
+    border: 1px solid rgba(185, 167, 217, 0.3);
+    border-radius: 25px;
+    padding: 30px 4%;
+    margin: 0 auto;
+    max-width: 1500px;
+    min-height: 85vh;
+}
+
+/* Headings and text */
+.page-template h1,
+.page-template h2,
+.page-template h3,
+.page-template h4,
+.page-template p,
+.page-template label,
+.page-template li {
+    color: #FFFFFF;
+}
+
+/* RAINFALL AND OTHER PAGE BACKGROUNDS */
+.page-template {
+    background: #234175 !important;
+    color: #FFFFFF !important;
+}
+
+
+
+/* White statistic and content cards */
+.page-template .stat-card,
+.page-template #districtDetails {
+    background: #FFFFFF;
+    color: #172B4D;
+    border: 1px solid #E2DFED;
+    border-radius: 16px;
+}
+
+/* Text inside white cards */
+.page-template .stat-card p,
+.page-template .stat-card small,
+.page-template .stat-card h2,
+.page-template #districtDetails h3,
+.page-template #districtDetails p {
+    color: #172B4D !important;
+}
+
+/* Search input */
+.page-template input {
+    background: #FFFFFF;
+    color: #172B4D;
+}
+
+/* Outside background */
+body {
+    background: #F4EDE0 !important;
+}
+
+/* =========================================
+   RAINFALL PAGE - TEXT CONTRAST FIX
+========================================= */
+
+/* Main page background */
+.page-template {
+    background: #234175 !important;
+    color: #FFFFFF;
+}
+
+/* Main page heading on blue background */
+.page-template > .heading h1,
+.page-template > .heading p {
+    color: #FFFFFF !important;
+}
+
+/* White content cards */
+.page-template .stat-card,
+.page-template .map-section,
+.page-template .search-section,
+.page-template #districtDetails {
+    background: #FFFFFF !important;
+    color: #172B4D !important;
+}
+
+/* All text inside white cards */
+.page-template .stat-card *,
+.page-template .map-section h2,
+.page-template .map-section p,
+.page-template .search-section h2,
+.page-template .search-section p,
+.page-template #districtDetails,
+.page-template #districtDetails * {
+    color: #172B4D !important;
+}
+
+/* Keep rainfall legend colours */
+.page-template .legend i {
+    border: none;
+}
+
+.page-template .legend .low {
+    background: #39A96B;
+}
+
+.page-template .legend .moderate {
+    background: #E8AD37;
+}
+
+.page-template .legend .high {
+    background: #DF4F55;
+}
+
+.page-template .legend .very-high {
+    background: #F28C28;
+}
+
+.page-template .legend .extreme {
+    background: #B8323A;
+}
+
+/* Search input */
+.page-template input {
+    background: #FFFFFF !important;
+    color: #172B4D !important;
+    border: 1px solid #B9A7D9;
+}
+
+.page-template input::placeholder {
+    color: #65758B !important;
+}
+
+/* Loading message on blue background */
+.page-template #loadingMessage {
+    color: #FFFFFF !important;
+}
+
+/* Outside background */
+body {
+    background: #F4EDE0 !important;
+}
+/* =========================================
+   MAP PAGE - TEXT CONTRAST FIX
+========================================= */
+
+/* Main page background */
+.map-page {
+    background: #234175 !important;
+    color: #FFFFFF;
+}
+
+/* Main headings on blue background */
+.map-page > .map-heading h1,
+.map-page > .map-heading p {
+    color: #FFFFFF !important;
+}
+
+/* White content sections */
+.map-page .risk-map-section,
+.map-page .district-section,
+.map-page .historical-section {
+    background: #FFFFFF !important;
+    color: #172B4D !important;
+}
+
+/* Text inside white sections */
+.map-page .risk-map-section h2,
+.map-page .risk-map-section p,
+.map-page .district-section h2,
+.map-page .district-section p,
+.map-page .historical-section h2,
+.map-page .historical-section p {
+    color: #172B4D !important;
+}
+
+/* District information cards */
+.map-page .detail-card,
+.map-page .historical-event-card {
+    background: #F5F4FA !important;
+    color: #172B4D !important;
+    border: 1px solid #E2DFED;
+}
+
+.map-page .detail-card *,
+.map-page .historical-event-card * {
+    color: #172B4D;
+}
+
+/* Search input */
+.map-page input {
+    background: #FFFFFF !important;
+    color: #172B4D !important;
+    border: 1px solid #B9A7D9;
+}
+
+.map-page input::placeholder {
+    color: #65758B !important;
+}
+
+/* Search button */
+.map-page button {
+    background: #172B4D;
+    color: #FFFFFF;
+}
+
+/* Map loading message */
+.map-page #mapMessage {
+    color: #FFFFFF;
+}
+
+/* Selected district information */
+.map-page #selectedDistrictName,
+.map-page #selectedDistrictState {
+    color: #172B4D;
+}
+
+/* Preserve map appearance */
+#indiaRiskMap,
+#districtMap {
+    background: #D9E1E8;
+}
+
+/* =========================================
+   SEARCH PAGE - TEXT CONTRAST FIX
+========================================= */
+
+/* Main page background */
+.search-page {
+    background: #234175 !important;
+    color: #FFFFFF;
+}
+
+/* Main heading on blue background */
+.search-page > h1,
+.search-page > p {
+    color: #FFFFFF !important;
+}
+
+/* White dashboard and information cards */
+.search-page .prediction-card,
+.search-page .detail-card,
+.search-page #predictionDashboard,
+.search-page .prediction-result {
+    background: #FFFFFF !important;
+    color: #172B4D !important;
+}
+
+/* Text inside white cards */
+.search-page .prediction-card *,
+.search-page .detail-card *,
+.search-page #predictionDashboard *,
+.search-page .prediction-result * {
+    color: #172B4D;
+}
+
+/* Risk level colours */
+.search-page .low,
+.search-page .moderate,
+.search-page .high {
+    font-weight: 700;
+}
+
+/* Risk progress bars */
+.search-page .progress-bar {
+    background: #E8E8E8;
+}
+
+/* Search input */
+.search-page input {
+    background: #FFFFFF !important;
+    color: #172B4D !important;
+}
+
+.search-page input::placeholder {
+    color: #65758B !important;
+}
+
+/* Buttons */
+.search-page button {
+    background: #172B4D;
+    color: #FFFFFF;
+}
+
+/* =====================================
+   GLOBAL LAYOUT ALIGNMENT FIX
+===================================== */
+
+/* Prevent padding from increasing element width */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default browser spacing */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Shared navbar width */
+.site-header {
+    width: calc(100% - 44px) !important;
+    max-width: none !important;
+    margin: 8px auto 30px !important;
+    box-sizing: border-box !important;
+}
+
+/* Home page content */
+.dashboard {
+    width: calc(100% - 44px) !important;
+    max-width: none !important;
+    margin: 30px auto !important;
+    box-sizing: border-box !important;
+}
+
+/* Map page content
+.map-page {
+    width: calc(100% - 44px) !important;
+    max-width: none !important;
+    margin: 30px auto !important;
+    box-sizing: border-box !important;
+} */
+
+/* Other navigation pages */
+.page-template {
+    box-sizing: border-box !important;
+}
+
+/* .map-page {
+    width: calc(100% - 44px) !important;
+    max-width: none !important;
+    margin: 30px auto !important;
+    box-sizing: border-box !important;
+} */
+
+.map-page {
+    width: calc(100% - 44px) !important;
+    max-width: none !important;
+    margin: 30px auto !important;
+    box-sizing: border-box !important;
+}
+
+/* FINAL MAP ALIGNMENT FIX */
+main.map-page.page-template {
+    width: calc(100% - 44px) !important;
+    max-width: none !important;
+    margin: 30px auto !important;
+    box-sizing: border-box !important;
 }

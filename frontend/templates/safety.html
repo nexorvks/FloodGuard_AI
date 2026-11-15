@@ -1,21 +1,227 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FloodGuard AI</title>
-  <link rel="stylesheet" href="/static/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flood Safety Tips | FloodGuard AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='css/style.css') }}?v=4">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='css/safety.css') }}?v=3">
 </head>
+
 <body>
-  <nav class="navbar">
-    <span class="brand">FloodGuard AI</span>
-    <a href="/">Home</a>
-    <a href="/map">Risk Map</a>
-    <a href="/analysis">Analysis</a>
-    <a href="/safety-guidelines">Safety</a>
-  </nav>
-  <main>
-    <h1>Safety &amp; Preparedness</h1><div id="guidelines"></div>
-  </main>
+
+    <!-- SHARED NAVIGATION -->
+    {% include "partials/navbar.html" %}
+    
+    <main class="container">
+
+        <section class="page-heading">
+            <h1>Flood Safety Guidelines</h1>
+            <p>Stay prepared. Stay informed. Stay safe.</p>
+        </section>
+
+        <!-- EMERGENCY NUMBERS -->
+        <section class="emergency-section">
+
+            <h2>Emergency Contact Numbers</h2>
+
+            <p class="emergency-warning">
+                In an immediate emergency, call 112 first.
+            </p>
+
+            <div class="emergency-grid">
+
+                <a href="tel:112" class="emergency-card primary">
+                    <span>National Emergency</span>
+                    <strong>112</strong>
+                    <small>Police · Fire · Ambulance · Disaster</small>
+                </a>
+
+                <a href="tel:1078" class="emergency-card">
+                    <span>NDMA Helpline</span>
+                    <strong>1078</strong>
+                    <small>National Disaster Management Authority</small>
+                </a>
+
+                <a href="tel:108" class="emergency-card">
+                    <span>Ambulance</span>
+                    <strong>108</strong>
+                    <small>Emergency medical assistance</small>
+                </a>
+
+                <a href="tel:102" class="emergency-card">
+                    <span>Ambulance</span>
+                    <strong>102</strong>
+                    <small>National Ambulance Service</small>
+                </a>
+
+                <a href="tel:101" class="emergency-card">
+                    <span>Fire Department</span>
+                    <strong>101</strong>
+                    <small>Fire and rescue services</small>
+                </a>
+
+                <a href="tel:100" class="emergency-card">
+                    <span>Police</span>
+                    <strong>100</strong>
+                    <small>Police assistance</small>
+                </a>
+
+                <a href="tel:9711077372" class="emergency-card">
+                    <span>NDRF Helpline</span>
+                    <strong>9711077372</strong>
+                    <small>National Disaster Response Force</small>
+                </a>
+
+                <a href="tel:01124363260" class="emergency-card">
+                    <span>NDRF Headquarters</span>
+                    <strong>011-24363260</strong>
+                    <small>National control contact</small>
+                </a>
+
+            </div>
+
+            <p class="number-note">
+                Emergency service availability may vary by state.
+                Use 112 for immediate assistance.
+            </p>
+
+        </section>
+
+        <!-- FIRST THINGS TO DO -->
+        <section class="safety-card">
+            <h2>1. What to Do During a Flood</h2>
+
+            <ul>
+                <li>Move immediately to higher ground or a safe elevated location.</li>
+                <li>Switch off electricity and gas only if it is safe to do so.</li>
+                <li>Carry your emergency kit and important documents.</li>
+                <li>Call 112 and clearly communicate your exact location.</li>
+                <li>Follow official evacuation instructions.</li>
+                <li>Help children, elderly people and persons with disabilities if it is safe.</li>
+            </ul>
+        </section>
+
+        <!-- FLOODWATER WARNING -->
+        <section class="safety-card danger-card">
+            <h2>2. Never Enter Floodwater</h2>
+
+            <ul>
+                <li>Never walk, swim or drive through floodwater.</li>
+                <li>Floodwater may contain hidden drains, debris and dangerous currents.</li>
+                <li>Stay away from electric poles and fallen power lines.</li>
+                <li>Never touch electrical equipment while standing in water.</li>
+                <li>Keep away from open drains, bridges and damaged roads.</li>
+            </ul>
+        </section>
+
+        <!-- EMERGENCY KIT -->
+        <section class="safety-card">
+            <h2>3. Emergency Kit Checklist</h2>
+
+            <p>Keep these essential items ready before flooding occurs.</p>
+
+            <div class="kit-grid">
+                <label><input type="checkbox"> Drinking water</label>
+                <label><input type="checkbox"> Dry food</label>
+                <label><input type="checkbox"> Torch and batteries</label>
+                <label><input type="checkbox"> Power bank</label>
+                <label><input type="checkbox"> First-aid kit</label>
+                <label><input type="checkbox"> Essential medicines</label>
+                <label><input type="checkbox"> Emergency whistle</label>
+                <label><input type="checkbox"> Battery-powered radio</label>
+                <label><input type="checkbox"> Waterproof documents</label>
+                <label><input type="checkbox"> Extra clothes</label>
+            </div>
+        </section>
+
+        <!-- RISK LEVEL -->
+        <section class="safety-card">
+            <h2>4. Safety Advice Based on Flood Risk</h2>
+
+            <p>
+                Follow the guidance corresponding to your district's
+                predicted risk level.
+            </p>
+
+            <div class="risk-grid">
+
+                <div class="risk-card low-risk">
+                    <h3>LOW RISK</h3>
+                    <ul>
+                        <li>Stay informed about weather updates.</li>
+                        <li>Keep emergency contacts saved.</li>
+                        <li>Prepare your emergency kit.</li>
+                    </ul>
+                </div>
+
+                <div class="risk-card moderate-risk">
+                    <h3>MODERATE RISK</h3>
+                    <ul>
+                        <li>Prepare to move to a safer location.</li>
+                        <li>Keep important documents protected.</li>
+                        <li>Monitor official flood warnings.</li>
+                        <li>Be ready to evacuate.</li>
+                    </ul>
+                </div>
+
+                <div class="risk-card high-risk">
+                    <h3>HIGH RISK</h3>
+                    <ul>
+                        <li>Follow evacuation orders immediately.</li>
+                        <li>Move to higher ground.</li>
+                        <li>Stay away from flooded areas.</li>
+                        <li>Call 112 if you need emergency assistance.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <p class="risk-note">
+                Risk classifications are decision-support information.
+                Always follow official government warnings and evacuation orders.
+            </p>
+        </section>
+
+        <!-- AFTER FLOOD -->
+        <section class="safety-card">
+            <h2>5. Safety Measures After a Flood</h2>
+
+            <ul>
+                <li>Return home only when authorities confirm it is safe.</li>
+                <li>Drink only boiled or properly purified water.</li>
+                <li>Discard food that has come into contact with floodwater.</li>
+                <li>Get electrical wiring and appliances inspected before switching power on.</li>
+                <li>Avoid damaged buildings, roads and bridges.</li>
+                <li>Wear protective footwear and gloves while cleaning.</li>
+                <li>Seek medical assistance if you develop symptoms after exposure to floodwater.</li>
+            </ul>
+        </section>
+
+        <!-- FINAL MESSAGE -->
+        <section class="final-message">
+            <h2>Your Safety Comes First</h2>
+
+            <p>
+                Stay alert, follow official instructions and never
+                take unnecessary risks during a flood.
+            </p>
+
+            <a href="tel:112">Call Emergency Services – 112</a>
+        </section>
+
+    </main>
+
+    <footer>
+        FloodGuard AI | Flood Awareness and Safety
+    </footer>
+
 </body>
 </html>

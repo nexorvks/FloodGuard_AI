@@ -1,75 +1,122 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>India Rainfall Map | FloodGuard AI</title>
+    <title>India Rainfall | FloodGuard AI</title>
 
+    <!-- GLOBAL CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='css/style.css') }}?v=5">
+
+    <!-- LEAFLET CSS -->
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
+    <!-- RAINFALL PAGE CSS -->
     <link rel="stylesheet"
-          href="{{ url_for('static', path='css/rainfall.css') }}">
+          href="{{ url_for('static', path='css/rainfall.css') }}?v=4">
 </head>
 
 <body>
 
-    <header>
-        <h2>FloodGuard AI</h2>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/map">Map</a>
-            <a class="active" href="/rainfall">Rain</a>
-            <a href="/analysis">Flood</a>
-            <a href="/safety-guidelines">Safety Tips</a>
-        </nav>
-    </header>
+    <!-- SHARED NAVIGATION -->
+    {% include "partials/navbar.html" %}
 
-    <main>
-        <h2>India Annual Rainfall Distribution</h2>
-        <p>District-wise cumulative rainfall for 2026</p>
+    <!-- RAINFALL PAGE CONTENT -->
+    <main class="container page-template">
 
-        <div class="summary">
-            <div class="stat">
-                <h3 id="totalDistricts">Loading...</h3>
-                <p>Districts covered</p>
+        <!-- PAGE HEADING -->
+        <section class="heading">
+            <h1>India Annual Rainfall</h1>
+            <p>
+                District-wise cumulative rainfall distribution for 2026.
+            </p>
+        </section>
+
+        <!-- RAINFALL STATISTICS -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <p>Average District Rainfall</p>
+                <h2 id="indiaAverage">Loading...</h2>
+                <small>Across mapped districts (mm)</small>
             </div>
 
-            <div class="stat">
-                <h3 id="highestRainfall">Loading...</h3>
-                <p>Highest rainfall (mm)</p>
+            <div class="stat-card">
+                <p>Districts Covered</p>
+                <h2 id="districtCount">Loading...</h2>
             </div>
 
-            <div class="stat">
-                <h3 id="highestDistrict">Loading...</h3>
-                <p>Highest rainfall district</p>
+            <div class="stat-card">
+                <p>Highest Rainfall District</p>
+                <h2 id="highestDistrict">Loading...</h2>
+                <small id="highestValue"></small>
             </div>
-        </div>
 
-        <div class="map-container">
+        </section>
+
+        <!-- INDIA RAINFALL HEATMAP -->
+        <section class="map-section">
+
+            <h2>India Rainfall Heatmap</h2>
+
+            <p>
+                District colours represent cumulative rainfall in millimetres.
+            </p>
+
             <div id="rainfallMap"></div>
-        </div>
 
-        <div class="legend">
-            <span>Rainfall (mm)</span>
-            <div class="legend-colors"></div>
-            <div class="legend-labels">
-                <span>0</span>
-                <span>250</span>
-                <span>500</span>
-                <span>1000</span>
-                <span>2000+</span>
+            <!-- MAP LEGEND -->
+            <div class="legend">
+                <span><i class="low"></i> 0–250 mm</span>
+                <span><i class="moderate"></i> 250–500 mm</span>
+                <span><i class="high"></i> 500–1000 mm</span>
+                <span><i class="very-high"></i> 1000–2000 mm</span>
+                <span><i class="extreme"></i> 2000+ mm</span>
             </div>
-        </div>
 
-        <p id="dataDate">Loading rainfall data...</p>
+        </section>
+
+        <!-- DISTRICT SEARCH -->
+        <section class="search-section">
+
+            <h2>Search District Rainfall</h2>
+
+            <p>
+                Search for a district to view its rainfall on the map.
+            </p>
+
+            <input
+                type="text"
+                id="districtSearch"
+                list="districtOptions"
+                placeholder="Enter district name..."
+                autocomplete="off">
+
+            <datalist id="districtOptions"></datalist>
+
+            <div id="districtDetails">
+                <h3>Select a district</h3>
+                <p>
+                    Its annual rainfall details will appear here.
+                </p>
+            </div>
+
+        </section>
+
+        <p id="loadingMessage">Loading rainfall data...</p>
+
     </main>
 
+    <!-- LEAFLET JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <script src="{{ url_for('static', path='js/rainfall.js') }}"></script>
+    <!-- RAINFALL JAVASCRIPT -->
+    <script src="{{ url_for('static', path='js/rainfall.js') }}?v=4"></script>
 
 </body>
 </html>

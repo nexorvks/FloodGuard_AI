@@ -1,0 +1,20 @@
+
+<header class="site-header">
+    <a href="/" class="brand">
+        <span class="brand-icon">✦</span>
+        <span>FloodGuard <span class="brand-ai">AI</span></span>
+    </a>
+
+    <nav class="main-navigation">
+        <a href="/" class="{{ 'active' if request.url.path == '/' else '' }}">Home</a>
+        <a href="/map" class="{{ 'active' if request.url.path == '/map' else '' }}">Map</a>
+        <a href="/rainfall" class="{{ 'active' if request.url.path == '/rainfall' else '' }}">Rain</a>
+        <a href="/safety-guidelines" class="{{ 'active' if request.url.path == '/safety-guidelines' else '' }}">Safety Tips</a>
+        <a href="/search" class="{{ 'active' if request.url.path == '/search' else '' }}">Search</a>
+    </nav>
+
+    <div class="monitoring-status">
+        <span class="status-dot"></span>
+        India Monitoring
+    </div>
+</header>

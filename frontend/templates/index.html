@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,258 +12,231 @@
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
     <link rel="stylesheet"
-      href="{{ url_for('static', path='css/style.css') }}?v=3">
+          href="{{ url_for('static', path='css/style.css') }}?v=4">
 </head>
 
 <body>
 
-<div class="dashboard">
+    <!-- SHARED NAVIGATION -->
 
-    <!-- NAVIGATION -->
-    <header class="navbar">
+    {% include "partials/navbar.html" %}
 
-        <a href="/" class="brand">
-            <span class="brand-icon">✦</span>
-            <span>FloodGuard <b>AI</b></span>
-        </a>
+    
+    <div class="dashboard">
 
-        <nav class="nav-links">
-            <a href="/" class="active">Home</a>
-            <a href="/map">Map</a>
-            <a href="/rainfall">Rain</a>
-            <a href="/safety-guidelines">Safety Tips</a>
-            <a href="/search" class="search-link">
-                <span>⌕</span> Search
-            </a>
-        </nav>
+        <main>
 
-        <div class="nav-status">
-            <span class="status-dot"></span>
-            India Monitoring
-        </div>
+            <!-- INDIA MAP -->
+            <section class="map-section">
 
-    </header>
+                <div class="map-title">
+                    <div>
+                        <span class="eyebrow">FLOODGUARD AI · INDIA</span>
+                        <h1>Satellite India Map</h1>
+                        <p>Explore rainfall and flood risk across India.</p>
+                    </div>
 
-
-    <!-- MAIN MAP -->
-    <main>
-
-        <section class="map-section">
-
-            <div class="map-title">
-                <div>
-                    <span class="eyebrow">FLOODGUARD AI · INDIA</span>
-                    <h1>Satellite India Map</h1>
-                    <p>Explore rainfall and flood risk across India</p>
+                    <select id="mapType" aria-label="Select map type">
+                        <option value="satellite">Satellite</option>
+                        <option value="street">Street</option>
+                        <option value="terrain">Terrain</option>
+                    </select>
                 </div>
-
-                <select id="mapType" aria-label="Select map type">
-                    <option value="satellite">Satellite</option>
-                    <option value="street">Street</option>
-                    <option value="terrain">Terrain</option>
-                </select>
-            </div>
-
-            <div class="map-container">
 
                 <div class="map-container">
                     <div id="indiaMap"></div>
                 </div>
 
-            </div>
+            </section>
 
-        </section>
+            <!-- WEATHER INFORMATION -->
+            <section class="weather-grid">
 
+                <!-- RAINFALL -->
+                <article class="weather-card rainfall-card">
 
-        <!-- WEATHER INFORMATION CARDS -->
-        <section class="weather-grid">
-
-            <!-- RAINFALL DETAILS -->
-            <article class="weather-card rainfall-card">
-
-                <div class="card-heading">
-                    <span class="card-icon">▥</span>
-                    <h2>Rainfall details</h2>
-                </div>
-
-                <div class="detail-row">
-                    <span>Rainfall</span>
-                    <strong id="rainfallValue">--</strong>
-                </div>
-
-                <div class="detail-row">
-                    <span>Humidity</span>
-                    <strong id="humidityValue">--</strong>
-                </div>
-
-                <div class="detail-row">
-                    <span>Wind speed</span>
-                    <strong id="windValue">--</strong>
-                </div>
-
-                <div class="detail-row">
-                    <span>Other details</span>
-                    <strong id="otherValue">--</strong>
-                </div>
-
-                <p class="card-note">
-                    Weather observations require a connected provider.
-                </p>
-
-            </article>
-
-
-            <!-- BENGALURU WEATHER -->
-            <article class="weather-card temperature-card">
-
-                <div class="card-heading">
-                    <span class="card-icon">☀</span>
-                    <h2>Bengaluru weather</h2>
-                </div>
-
-                <div class="temperature-gauge">
-
-                    <svg viewBox="0 0 220 135">
-
-                        <path
-                            d="M 27 112 A 83 83 0 0 1 193 112"
-                            fill="none"
-                            stroke="rgba(255,255,255,0.22)"
-                            stroke-width="13"
-                            stroke-linecap="round"/>
-
-                        <path
-                            id="gaugeProgress"
-                            d="M 27 112 A 83 83 0 0 1 193 112"
-                            fill="none"
-                            stroke="#F4EDE0"
-                            stroke-width="13"
-                            stroke-linecap="round"
-                            stroke-dasharray="261"
-                            stroke-dashoffset="261"/>
-
-                    </svg>
-
-                    <div class="temperature-value">
-                        <strong id="temperatureValue">--</strong>
-                        <span>°C</span>
+                    <div class="card-heading">
+                        <span class="card-icon">▥</span>
+                        <h2>Rainfall Details</h2>
                     </div>
 
-                </div>
-
-                <p id="weatherCondition">Weather data unavailable</p>
-
-                <span class="location-label">
-                    Bengaluru, Karnataka
-                </span>
-
-            </article>
-
-
-            <!-- TEMPERATURE GRAPH -->
-            <article class="weather-card graph-card">
-
-                <div class="card-heading">
-                    <span class="card-icon">⌁</span>
-                    <h2>Temperature °C</h2>
-                </div>
-
-                <div class="graph-subtitle">
-                    <span>Daily forecast</span>
-                    <span>5 AM – 8 PM</span>
-                </div>
-
-                <div class="graph-container">
-
-                    <div class="y-axis">
-                        <span>40°</span>
-                        <span>30°</span>
-                        <span>20°</span>
-                        <span>10°</span>
-                        <span>0°</span>
+                    <div class="detail-row">
+                        <span>Rainfall</span>
+                        <strong id="rainfallValue">--</strong>
                     </div>
 
-                    <div class="graph-content">
+                    <div class="detail-row">
+                        <span>Humidity</span>
+                        <strong id="humidityValue">--</strong>
+                    </div>
 
-                        <svg viewBox="0 0 320 150"
-                             preserveAspectRatio="none">
+                    <div class="detail-row">
+                        <span>Wind Speed</span>
+                        <strong id="windValue">--</strong>
+                    </div>
 
-                            <line x1="0" y1="10" x2="320" y2="10"
-                                  class="grid-line"/>
+                    <div class="detail-row">
+                        <span>Other Details</span>
+                        <strong id="otherValue">--</strong>
+                    </div>
 
-                            <line x1="0" y1="42" x2="320" y2="42"
-                                  class="grid-line"/>
+                    <p class="card-note">
+                        Weather observations require a connected provider.
+                    </p>
 
-                            <line x1="0" y1="74" x2="320" y2="74"
-                                  class="grid-line"/>
+                </article>
 
-                            <line x1="0" y1="106" x2="320" y2="106"
-                                  class="grid-line"/>
+                <!-- BENGALURU WEATHER -->
+                <article class="weather-card temperature-card">
 
-                            <line x1="0" y1="138" x2="320" y2="138"
-                                  class="grid-line"/>
+                    <div class="card-heading">
+                        <span class="card-icon">☀</span>
+                        <h2>Bengaluru Weather</h2>
+                    </div>
 
-                            <path id="temperatureArea"
-                                  d=""
-                                  fill="url(#purpleGradient)"/>
+                    <div class="temperature-gauge">
 
-                            <path id="temperatureLine"
-                                  d=""
-                                  fill="none"
-                                  stroke="#8951EF"
-                                  stroke-width="3"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"/>
+                        <svg viewBox="0 0 220 135">
 
-                            <defs>
-                                <linearGradient id="purpleGradient"
-                                                x1="0" y1="0"
-                                                x2="0" y2="1">
-                                    <stop offset="0%"
-                                          stop-color="#8951EF"
-                                          stop-opacity=".3"/>
-                                    <stop offset="100%"
-                                          stop-color="#8951EF"
-                                          stop-opacity="0"/>
-                                </linearGradient>
-                            </defs>
+                            <path
+                                d="M 27 112 A 83 83 0 0 1 193 112"
+                                fill="none"
+                                stroke="rgba(255,255,255,0.22)"
+                                stroke-width="13"
+                                stroke-linecap="round"/>
+
+                            <path
+                                id="gaugeProgress"
+                                d="M 27 112 A 83 83 0 0 1 193 112"
+                                fill="none"
+                                stroke="#B9A7D9"
+                                stroke-width="13"
+                                stroke-linecap="round"
+                                stroke-dasharray="261"
+                                stroke-dashoffset="261"/>
 
                         </svg>
 
-                        <div class="x-axis">
-                            <span>5 AM</span>
-                            <span>9 AM</span>
-                            <span>1 PM</span>
-                            <span>5 PM</span>
-                            <span>8 PM</span>
+                        <div class="temperature-value">
+                            <strong id="temperatureValue">--</strong>
+                            <span>°C</span>
                         </div>
 
                     </div>
 
-                </div>
+                    <p id="weatherCondition">Weather data unavailable</p>
 
-                <p class="card-note">
-                    Forecast appears when a weather provider is connected.
-                </p>
+                    <span class="location-label">
+                        Bengaluru, Karnataka
+                    </span>
 
-            </article>
+                </article>
 
-        </section>
+                <!-- TEMPERATURE GRAPH -->
+                <article class="weather-card graph-card">
 
-    </main>
+                    <div class="card-heading">
+                        <span class="card-icon">⌁</span>
+                        <h2>Temperature °C</h2>
+                    </div>
 
+                    <div class="graph-subtitle">
+                        <span>Daily Forecast</span>
+                        <span>5 AM – 8 PM</span>
+                    </div>
 
-    <footer>
-        <span>✦ FloodGuard AI</span>
-        <span>India Flood Prediction & Monitoring</span>
-    </footer>
+                    <div class="graph-container">
 
-</div>
+                        <div class="y-axis">
+                            <span>40°</span>
+                            <span>30°</span>
+                            <span>20°</span>
+                            <span>10°</span>
+                            <span>0°</span>
+                        </div>
 
+                        <div class="graph-content">
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+                            <svg viewBox="0 0 320 150"
+                                 preserveAspectRatio="none">
 
-<script src="{{ url_for('static', path='js/main.js') }}"></script>
+                                <defs>
+                                    <linearGradient
+                                        id="purpleGradient"
+                                        x1="0" y1="0"
+                                        x2="0" y2="1">
+
+                                        <stop offset="0%"
+                                              stop-color="#B9A7D9"
+                                              stop-opacity=".3"/>
+
+                                        <stop offset="100%"
+                                              stop-color="#B9A7D9"
+                                              stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <line x1="0" y1="10" x2="320" y2="10"
+                                      class="grid-line"/>
+
+                                <line x1="0" y1="42" x2="320" y2="42"
+                                      class="grid-line"/>
+
+                                <line x1="0" y1="74" x2="320" y2="74"
+                                      class="grid-line"/>
+
+                                <line x1="0" y1="106" x2="320" y2="106"
+                                      class="grid-line"/>
+
+                                <line x1="0" y1="138" x2="320" y2="138"
+                                      class="grid-line"/>
+
+                                <path id="temperatureArea"
+                                      d=""
+                                      fill="url(#purpleGradient)"/>
+
+                                <path id="temperatureLine"
+                                      d=""
+                                      fill="none"
+                                      stroke="#B9A7D9"
+                                      stroke-width="3"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+
+                            </svg>
+
+                            <div class="x-axis">
+                                <span>5 AM</span>
+                                <span>9 AM</span>
+                                <span>1 PM</span>
+                                <span>5 PM</span>
+                                <span>8 PM</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="card-note">
+                        Forecast appears when a weather provider is connected.
+                    </p>
+
+                </article>
+
+            </section>
+
+        </main>
+
+        <footer>
+            <span>✦ FloodGuard AI</span>
+            <span>India Flood Prediction & Monitoring</span>
+        </footer>
+
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="{{ url_for('static', path='js/main.js') }}?v=4"></script>
 
 </body>
 </html>

@@ -124,15 +124,14 @@ function getRiskColor(risk) {
     return "#929B96";
 }
 
-function districtStyle(feature) {
-    const risk = getDistrictRisk(feature.properties);
 
+function districtStyle(feature) {
     return {
         renderer: canvasRenderer,
-        fillColor: getRiskColor(risk),
+        fillColor: "#8bb8a2",
         color: "#FFFFFF",
         weight: 1,
-        fillOpacity: risk !== "No data" ? 0.65 : 0.2
+        fillOpacity: 0.25
     };
 }
 
@@ -168,7 +167,7 @@ function showDistrictInfo(feature) {
     const risk = getDistrictRisk(properties);
 
     document.getElementById("mapMessage").textContent =
-        `${district}, ${state} — ${risk} risk`;
+        `${district}, ${state}`;
 
     document.getElementById("districtSearch").value = district;
 
@@ -215,7 +214,8 @@ function displayDistrictDashboard(feature) {
 
     document.getElementById("selectedDistrictName").textContent = district;
     document.getElementById("selectedDistrictState").textContent = state;
-    document.getElementById("districtRisk").textContent = risk;
+
+    displayPredictionPanel(properties);
 
     document.getElementById("historicalFloods").textContent =
         "Loading historical records...";
@@ -229,12 +229,6 @@ function displayDistrictDashboard(feature) {
     document.getElementById("historicalEvents").textContent =
         "Loading historical flood records...";
 
-    const probability = getRiskProbability(properties);
-
-    document.getElementById("forecastMessage").textContent =
-        `ML Risk Classification: ${risk} | Model Probability: ${probability}`;
-
-    document.getElementById("forecastResults").innerHTML = "";
     
 
     // Create or reuse the district map
@@ -277,11 +271,142 @@ function displayDistrictDashboard(feature) {
         block: "start"
     });
 
-    requestAnimationFrame(() => {
-        currentDistrictMap.invalidateSize();
-    });
+        setTimeout(() => {
+        currentDistrictMap.invalidateSize(true);
+
+            if (window.selectedDetailLayer) {
+                const bounds = window.selectedDetailLayer.getBounds();
+
+                if (bounds.isValid()) {
+                    currentDistrictMap.fitBounds(bounds, {
+                        padding: [25, 25]
+                    });
+                }
+            }
+        }, 300);
 
     loadDistrictHistory(feature);
+}
+
+
+function displayPredictionPanel(properties) {
+    const dashboard = document.getElementById("districtDashboard");
+
+    let panel = document.getElementById("predictionPanel");
+
+    if (!panel) {
+        panel = document.createElement("section");
+        panel.id = "predictionPanel";
+        panel.className = "prediction-panel";
+
+        const stateElement = document.getElementById("selectedDistrictState");
+        stateElement.insertAdjacentElement("afterend", panel);
+    }
+
+    const risk = String(getDistrictRisk(properties));
+    const confidence = Number(properties.risk_probability);
+    const scores = properties.risk_scores;
+
+    const validScores = scores && typeof scores === "object"
+        ? scores
+        : null;
+
+    const riskColors = {
+        Low: "#29945b",
+        Moderate: "#d99a20",
+        High: "#d94343"
+    };
+
+    if (!validScores) {
+        panel.innerHTML = `
+            <h3>Flood Risk Prediction</h3>
+            <p>Prediction scores are not available for this district.</p>
+            <strong>Risk level: ${risk}</strong>
+        `;
+        return;
+    }
+
+    const predictedRisk = Object.entries(validScores)
+        .sort((a, b) => Number(b[1]) - Number(a[1]))[0];
+
+    const bestRisk = predictedRisk[0];
+    const bestScore = Number(predictedRisk[1]) * 100;
+
+    const confidenceText = Number.isFinite(confidence)
+        ? `${(confidence * 100).toFixed(2)}%`
+        : "Unavailable";
+
+    const scoreRows = ["Low", "Moderate", "High"].map(level => {
+        const score = Number(validScores[level] || 0) * 100;
+        const width = Math.max(0, Math.min(100, score));
+
+        return `
+            <div class="score-row">
+                <div class="score-label">
+                    <span style="color:#172B4D !important;">${level}</span>
+                    <strong style="color:#172B4D !important;">${score.toFixed(2)}%</strong>
+                </div>
+                <div class="score-track">
+                    <div class="score-fill"
+                         style="width:${width}%;background:${riskColors[level]}">
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    const advice = {
+        Low: "Stay informed and monitor weather updates. Keep your emergency kit ready.",
+        Moderate: "Prepare to move to a safer location. Monitor official warnings and keep essential items ready.",
+        High: "Follow evacuation instructions immediately. Move to higher ground and call 112 if you need emergency help."
+    };
+
+    
+    panel.innerHTML = `
+        <h3 style="color:#172B4D !important;">
+            District Flood Prediction
+        </h3>
+
+        <div class="prediction-result"
+            style="border-left-color:${riskColors[bestRisk]}">
+
+            <span style="color:#65758B !important;">
+                Best predicted risk level
+            </span>
+
+            <strong style="color:${riskColors[bestRisk]} !important;">
+                ${bestRisk.toUpperCase()}
+            </strong>
+
+            <p style="color:#172B4D !important;">
+                Model confidence: ${confidenceText}
+            </p>
+        </div>
+
+        <h4 style="color:#172B4D !important;">
+            Model class scores
+        </h4>
+
+        ${scoreRows}
+
+        <div class="prediction-advice"
+            style="background:#EAF5EE;">
+
+            <h4 style="color:#172B4D !important;">
+                Recommended safety action
+            </h4>
+
+            <p style="color:#172B4D !important;">
+                ${advice[bestRisk]}
+            </p>
+        </div>
+
+        <small style="color:#65758B !important;">
+            Model confidence is not the probability that a flood will occur.
+            Predictions are decision-support estimates.
+        </small>
+    `;
+
 }
 
 
@@ -291,7 +416,9 @@ async function loadDistrictHistory(feature) {
     const properties = feature.properties || {};
 
     const district = getDistrictName(properties);
-    const code = properties.district_code;
+    const code =
+        properties.district_code ??
+        properties.dist_lgd;
 
     const historicalElement =
         document.getElementById("historicalFloods");
@@ -336,6 +463,10 @@ async function loadDistrictHistory(feature) {
         }
 
         const data = await historyPromise;
+
+        console.log("Historical API response:", data);
+        console.log("Selected district:", district);
+        console.log("District code:", code);
 
         // Ignore outdated response if user selected another district.
         if (currentDistrictCode !== requestCode) return;
@@ -481,15 +612,7 @@ function renderDistrictsInBatches(features) {
                     title.textContent =
                         `${getDistrictName(properties)}, ${getStateName(properties)}`;
 
-                    const risk = document.createElement("p");
-                    risk.textContent =
-                        `Risk Level: ${getDistrictRisk(properties)}`;
-
-                    const probability = document.createElement("p");
-                    probability.textContent =
-                        `Model Probability: ${getRiskProbability(properties)}`;
-
-                    popupContent.append(title, risk, probability);
+                    popupContent.append(title);
 
                     geoLayer.bindPopup(popupContent);
 
@@ -518,6 +641,7 @@ function renderDistrictsInBatches(features) {
 
     requestAnimationFrame(renderBatch);
 }
+
 
 
 // 11. LOAD INDIA DISTRICT DATA
