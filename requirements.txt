@@ -24,3 +24,4 @@ jupyter
 xarray             # IMD NetCDF rainfall files
 netCDF4
 # pytest             # once the API is stable
+pyarrow

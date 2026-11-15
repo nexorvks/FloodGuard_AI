@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>India Rainfall Map | FloodGuard AI</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='css/rainfall.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h2>FloodGuard AI</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/map">Map</a>
+            <a class="active" href="/rainfall">Rain</a>
+            <a href="/analysis">Flood</a>
+            <a href="/safety-guidelines">Safety Tips</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>India Annual Rainfall Distribution</h2>
+        <p>District-wise cumulative rainfall for 2026</p>
+
+        <div class="summary">
+            <div class="stat">
+                <h3 id="totalDistricts">Loading...</h3>
+                <p>Districts covered</p>
+            </div>
+
+            <div class="stat">
+                <h3 id="highestRainfall">Loading...</h3>
+                <p>Highest rainfall (mm)</p>
+            </div>
+
+            <div class="stat">
+                <h3 id="highestDistrict">Loading...</h3>
+                <p>Highest rainfall district</p>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div id="rainfallMap"></div>
+        </div>
+
+        <div class="legend">
+            <span>Rainfall (mm)</span>
+            <div class="legend-colors"></div>
+            <div class="legend-labels">
+                <span>0</span>
+                <span>250</span>
+                <span>500</span>
+                <span>1000</span>
+                <span>2000+</span>
+            </div>
+        </div>
+
+        <p id="dataDate">Loading rainfall data...</p>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="{{ url_for('static', path='js/rainfall.js') }}"></script>
+
+</body>
+</html>

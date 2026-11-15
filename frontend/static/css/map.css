@@ -1,0 +1,220 @@
+.map-page {
+    width: 92%;
+    max-width: 1400px;
+    margin: 35px auto;
+    color: #EEE7D8;
+}
+
+.map-heading {
+    margin-bottom: 25px;
+}
+
+.map-heading h1 {
+    color: #EEE7D8;
+    font-size: 30px;
+}
+
+.map-heading p,
+.district-section > p {
+    color: #c5cfc8;
+}
+
+.risk-map-section,
+.district-section {
+    background: #12382E;
+    border: 1px solid #416456;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 30px;
+}
+
+.map-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.map-toolbar select,
+.district-search input {
+    background: #0C241E;
+    color: #EEE7D8;
+    border: 1px solid #557568;
+    border-radius: 8px;
+    padding: 11px;
+}
+
+#indiaRiskMap {
+    width: 100%;
+    height: 550px;
+    border-radius: 12px;
+    z-index: 1;
+}
+
+.risk-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-top: 18px;
+}
+
+.risk-legend span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-color {
+    width: 13px;
+    height: 13px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.legend-color.low {
+    background: #39A96B;
+}
+
+.legend-color.moderate {
+    background: #E8AD37;
+}
+
+.legend-color.high {
+    background: #DF4F55;
+}
+
+.legend-color.no-data {
+    background: #929B96;
+}
+
+#mapMessage {
+    color: #c5cfc8;
+    margin-top: 15px;
+}
+
+.district-search {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.district-search input {
+    flex: 1;
+    min-width: 0;
+}
+
+.district-search button {
+    background: #8951EF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 22px;
+    cursor: pointer;
+}
+
+.district-result {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    margin: 6px 0;
+    background: #0C241E;
+    color: #EEE7D8;
+    border: 1px solid #416456;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.district-result:hover {
+    border-color: #AD85FF;
+}
+
+#districtDashboard {
+    margin-top: 30px;
+}
+
+#districtMap {
+    width: 100%;
+    height: 350px;
+    border-radius: 12px;
+    margin: 20px 0;
+    z-index: 1;
+}
+
+.district-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.detail-card {
+    background: #0C241E;
+    border: 1px solid #416456;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.detail-card h3 {
+    color: #AD85FF;
+}
+
+.detail-card p,
+.detail-card li {
+    color: #EEE7D8;
+    line-height: 1.7;
+}
+
+.forecast-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #0C241E;
+    border-radius: 12px;
+}
+
+.forecast-section h2 {
+    color: #AD85FF;
+}
+
+@media (max-width: 700px) {
+    .map-page {
+        width: 95%;
+    }
+
+    .risk-map-section,
+    .district-section {
+        padding: 14px;
+    }
+
+    #indiaRiskMap {
+        height: 400px;
+    }
+
+    .district-details {
+        grid-template-columns: 1fr;
+    }
+
+    .district-search {
+        flex-direction: column;
+    }
+
+    .map-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+
+}
+
+
+#districtDashboard ul {
+    padding-left: 22px;
+    margin: 10px 0;
+    list-style-position: outside;
+}
+
+#districtDashboard li {
+    padding-left: 2px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
